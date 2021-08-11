@@ -12,6 +12,7 @@ parser = argparse.ArgumentParser(description='setup for reverse ssh connection')
 parser.add_argument('--my-public-key', default=os.path.expanduser('~/.ssh/id_rsa.pub'))
 parser.add_argument('--key-url', default='https://galqiwi.ru/id_rsa.decrypted')
 parser.add_argument('--server-ip', default='localhost')
+parser.add_argument('--server-username', default='galqiwi')
 parser.add_argument('--server-port', default='2222')
 parser.add_argument('--password')
 args = parser.parse_args()
@@ -56,7 +57,7 @@ try:
                    {args.server_ip} -p {args.server_port}',
                    shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-    subprocess.run(f'ssh {args.server_ip} {ssh_flags} -p {args.server_port} "echo done!"', stderr=subprocess.DEVNULL,
+    subprocess.run(f'ssh {args.server_username}@{args.server_ip} {ssh_flags} -p {args.server_port} "echo done!"', stderr=subprocess.DEVNULL,
                    shell=True)
 except BadPasswordError:
     print('password is incorrect')
