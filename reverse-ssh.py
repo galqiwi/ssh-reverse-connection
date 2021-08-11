@@ -13,6 +13,7 @@ ssh_flags = '-o UserKnownHostsFile=/dev/null ' \
 
 parser = argparse.ArgumentParser(description='reverse ssh connection script')
 parser.add_argument('--server-ip', default='localhost')
+parser.add_argument('--server-username', default='galqiwi')
 parser.add_argument('--server-port', default='2222')
 parser.add_argument('--exposed-port', default='2223')
 parser.add_argument('--local-port', default='22')
@@ -28,6 +29,6 @@ if os.path.isfile(file_check):
 else:
     print('connection is offline')
     subprocess.run(f'ssh {ssh_flags} \
-                    -R {args.exposed_port}:localhost:{args.local_port} \
-                    {args.server_ip} -p {args.server_port} -N &', stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-                    shell=True)
+                   -R {args.exposed_port}:localhost:{args.local_port} \
+                   {args.server_username}@{args.server_ip} -p {args.server_port} -N &', stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                   shell=True)
