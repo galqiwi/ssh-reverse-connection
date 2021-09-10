@@ -54,7 +54,7 @@ try:
     print('password is correct')
 
     subprocess.run(f'ssh-copy-id -f -i "{pub_file}" {ssh_flags} -o "IdentityFile {key_filename}" \
-                   {args.server_ip} -p {args.server_port}',
+                   {args.server_username}@{args.server_ip} -p {args.server_port}',
                    shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     subprocess.run(f'ssh {args.server_username}@{args.server_ip} {ssh_flags} -p {args.server_port} "echo done!"', stderr=subprocess.DEVNULL,
