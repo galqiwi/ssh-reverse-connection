@@ -10,7 +10,7 @@ from encryption import decrypt, BadPasswordError
 
 parser = argparse.ArgumentParser(description='setup for reverse ssh connection')
 parser.add_argument('--my-public-key', default=os.path.expanduser('~/.ssh/id_rsa.pub'))
-parser.add_argument('--key-url', default='https://galqiwi.ru/id_rsa.decrypted')
+parser.add_argument('--key-url', default='https://galqiwi.ru/id_rsa.encrypted')
 parser.add_argument('--server-ip', default='localhost')
 parser.add_argument('--server-username', default='galqiwi')
 parser.add_argument('--server-port', default='2222')
